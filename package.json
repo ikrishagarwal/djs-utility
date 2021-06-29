@@ -1,5 +1,5 @@
 {
-  "name": "djs-helper",
+  "name": "djs-utility",
   "version": "0.1.0",
   "description": "A package to help you out make discord bots with discord.js easily.",
   "main": "dist/index",
