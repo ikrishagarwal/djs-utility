@@ -1,0 +1,21 @@
+{
+  "name": "discord.js-helper",
+  "version": "0.1.0",
+  "description": "A package to help you out make discord bots with discord.js easily.",
+  "main": "dist/index",
+  "scripts": {
+    "build": "tsc",
+    "test": "node ./test/index.js"
+  },
+  "keywords": [
+    "discord.js-helper"
+  ],
+  "author": "Krish",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3"
+  }
+}
