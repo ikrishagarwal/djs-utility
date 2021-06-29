@@ -8,7 +8,8 @@
     "test": "node ./test/index.js"
   },
   "keywords": [
-    "discord.js-helper"
+    "discord.js-helper",
+    "pagination"
   ],
   "author": "Krish",
   "license": "ISC",
@@ -17,5 +18,9 @@
   },
   "dependencies": {
     "discord.js": "^12.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KrishAgarwal2811/discord.js-helper"
   }
 }
