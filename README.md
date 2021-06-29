@@ -1,6 +1,6 @@
 # A library to make your discord bot easily.
 
-`discord.js-helper` is for helping you out to write less code and do your stuff. It provides you with some pre-written code which you can to do compicated in just cuople of lines.
+`djs-helper` is for helping you out to write less code and do your stuff. It provides you with some pre-written code which you can to do compicated in just cuople of lines.
 
 # Documentation
 
@@ -13,13 +13,13 @@ npm intsall dsicord.js-helper
 Importing the package
 
 ```js
-const helper = require("discord.js-helper");
+const helper = require("djs-helper");
 ```
 
 or via import
 
 ```js
-import helper from ("discord.js-helper");
+import helper from ("djs-helper");
 ```
 
 ## Using the features
@@ -27,7 +27,7 @@ import helper from ("discord.js-helper");
 - `pagination`
 
 ```js
-const { pagination } = require("discord.js-helper");
+const { pagination } = require("djs-helper");
 
 pagination({
   message: message,
