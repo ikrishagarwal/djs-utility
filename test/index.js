@@ -1,6 +1,7 @@
 const { Client, MessageEmbed } = require("discord.js");
 const client = new Client();
-const { pagination } = require("../src/index");
+// const { pagination } = require("../src/index");
+const { pagination } = require("djs-utility");
 
 client.config = require("./config.js");
 
