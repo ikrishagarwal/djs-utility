@@ -57,6 +57,28 @@ emojis: {
 }
 ```
 
+> You can also import `paginationEmbedOptions` and `emojiOptions` for defining optional variables.
+> For example:
+
+```ts
+import { paginationEmbedOptions, emojiOptions, pagination } from "djs-utility";
+const emojis: emojiOptions = {
+  ...
+}
+
+const options: paginationEmbedOptions = {
+  ...,
+  emojis
+}
+
+pagination(options);
+
+```
+
+Output:
+
+<img src="./images/pagination.png" alt="pagination-example" />
+
 # Contributing
 
 Contributions are always welcome!
