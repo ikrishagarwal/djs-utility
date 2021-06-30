@@ -7,7 +7,7 @@
 Install the package
 
 ```bash
-npm intsall dsicord.js-utility
+npm install discord.js-utility
 ```
 
 Importing the package
