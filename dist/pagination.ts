@@ -6,7 +6,7 @@ import {
   MessageReaction,
 } from "discord.js";
 
-interface emojiData {
+export interface emojiOptions {
   pageNumber?: EmojiResolvable;
   home?: EmojiResolvable;
   left?: EmojiResolvable;
@@ -15,16 +15,16 @@ interface emojiData {
   stop?: EmojiResolvable;
 }
 
-interface paginationEmbedData {
+export interface paginationEmbedOptions {
   message: Message;
   pages: MessageEmbed[];
   initialPage?: number;
   initialText?: String;
-  emojis?: emojiData;
+  emojis?: emojiOptions;
   timeout?: number;
 }
 
-export async function pagination(data: paginationEmbedData) {
+export async function pagination(data: paginationEmbedOptions) {
   let page = data.initialPage || 0;
   let { emojis } = data;
   data.timeout = data.timeout || 120000;
