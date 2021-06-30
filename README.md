@@ -31,7 +31,7 @@ const { pagination } = require("djs-utility");
 
 pagination({
   message: message,
-  pages: [embedOne, embedTwo, ..., embedN],
+  pages: [embedOne, embedTwo, ..., lastEmbed],
   initialText: "`!help command` will show an extra help"
 });
 
