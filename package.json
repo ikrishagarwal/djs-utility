@@ -12,7 +12,7 @@
     "pagination"
   ],
   "author": "Krish",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "typescript": "^4.3.4"
   },
