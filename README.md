@@ -75,9 +75,9 @@ pagination(options);
 
 ```
 
-Output:
-
-<img src="./images/pagination.png" alt="pagination-example" />
+> Output:
+>
+> ![pagination-example](./images/pagination.png)
 
 # Contributing
 
