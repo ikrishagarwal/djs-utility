@@ -7,7 +7,7 @@
 Install the package
 
 ```bash
-npm install discord.js-utility
+npm install djs-utility
 ```
 
 Importing the package
