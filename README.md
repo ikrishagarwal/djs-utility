@@ -120,6 +120,46 @@ const { stringPagination: pagination } = require("djs-utility");
 pagination(...);
 ```
 
+### `confirm`
+
+```js
+const { confirm } = require("djs-utility");
+
+confirm({
+  message,
+  content: "Are you sure?",
+})
+  .then((result) => {
+    // result is true if user reacts with the check
+    // or else it's false if user reacts with cross emoji
+  })
+  .catch((err) => {
+    // err.erro = "timeout" if its an timeout error
+  });
+```
+
+**Parameters:**
+
+- **message** - The message object (required)
+- **content** - Either it must be a `string` or `MessageEmbed` (required)
+- **timeout** - The maximun amount of time the reaction collector will listen for reactions. _Default is `60000`_. (optional)
+- **emojis** - If you don't want the default emojis. Pass an object. (optional)
+  - check - The check emoji which results to true
+  - cross - The cross emoji which results to false
+
+> You can import `confirmOptions` for typescript intellisense
+>
+> For example:
+
+```ts
+import { confirm, confirmOptions } from "djs-utility";
+const options: confirmOptions = {
+  ...
+}
+
+confirm(options);
+```
+
 # Contributing
 
 Contributions are always welcome!
