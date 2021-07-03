@@ -24,7 +24,7 @@ import utility from ("djs-utility");
 
 ## Using the features
 
-- `pagination`
+### `pagination`
 
 ```js
 const { pagination } = require("djs-utility");
@@ -72,12 +72,53 @@ const options: paginationEmbedOptions = {
 }
 
 pagination(options);
-
 ```
 
 > Output:
 >
 > ![pagination-example](./images/pagination.png)
+
+### `string pagination`
+
+```js
+const { stringPagination } = require("djs-utility");
+
+strignPagination({
+  message: message,
+  pages: [embedOne, embedTwo, ..., lastEmbed]
+});
+```
+
+**Parameters:**
+
+- **message** - The message object (required)
+- **pages** - An array of `String` as individual pages (required)
+- **initialPage** - The starting page number if you don't want it to be 0. _Default is 0_ (optional)
+- **timeout** - The maximun amount of time the reaction collector will listen for reactions. _Default is `12000`_. (optional)
+- **emojis** - If you don't want the default emojis. Pass an object. (optional)
+
+> Emojis are same for this too (`emojiOptions`)
+>
+> Similarly you can also import `stringPaginationEmbedOptions`.
+
+> For example:
+
+```ts
+import { stringPaginationEmbedOptions as pgOptions, stringPagination } from "djs-utility";
+const options: pgOptions = {
+  ...
+}
+
+stringPagination(options);
+```
+
+> For NodeJS you can also set alias. For example:
+
+```js
+const { stringPagination: pagination } = require("djs-utility");
+
+pagination(...);
+```
 
 # Contributing
 
