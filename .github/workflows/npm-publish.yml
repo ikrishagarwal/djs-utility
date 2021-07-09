@@ -1,12 +1,8 @@
 name: Publish the node package
 
 on:
-  # publish the package if I directly push to master
+  # publish the package if I directly push to master or if I merge a pull request
   push:
-    branches:
-      - master
-  # publish the package if I merge a pull request
-  pull_request:
     branches:
       - master
 
