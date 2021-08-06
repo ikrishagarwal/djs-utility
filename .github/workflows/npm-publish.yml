@@ -1,12 +1,8 @@
 name: Publish the node package
 
 on:
-  # publish the package if I directly push to master
+  # publish the package if I directly push to master or if I merge a pull request
   push:
-    branches:
-      - master
-  # publish the package if I merge a pull request
-  pull_request:
     branches:
       - master
 
@@ -14,20 +10,25 @@ jobs:
   npm:
     name: npm
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
     steps:
-      - name: Checkout repository
+      - name: Clone the repository to local runner
         uses: actions/checkout@v2
 
-      - name: Install Node v12
+      - name: Install Node Version ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
 
-      - name: Install dependencies
+      - name: Installing dependencies
         run: npm ci
 
-      - name: Publishing
+      - name: Publishing the package to npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
