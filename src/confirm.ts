@@ -47,9 +47,7 @@ export function confirm({
       .then((collected) => {
         const reaction = collected.first();
 
-        try {
-          msgRep.delete();
-        } catch {}
+        msgRep.delete().catch(() => null);
 
         if (reaction?.emoji.name === check) {
           res(true);
@@ -57,9 +55,11 @@ export function confirm({
           res(false);
         }
       })
-      .catch(() => {
-        msgRep.delete();
-        rej({ error: "timeout" });
+      .catch((err) => {
+        // .catch() is to handle the permission error
+        msgRep.delete().catch(() => null);
+
+        rej({ error: true, errorType: err });
       });
   });
 }
