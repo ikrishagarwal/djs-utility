@@ -134,7 +134,8 @@ confirm({
     // or else it's false if user reacts with cross emoji
   })
   .catch((err) => {
-    // err.erro = "timeout" if its an timeout error
+    // err.error = true
+    // in the most cases err.errorType will be timeout error
   });
 ```
 
