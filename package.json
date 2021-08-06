@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "node ./test/index.js"
+    "test": "node ./dist/test-bot/index.js"
   },
   "keywords": [
     "discord.js-helper",
