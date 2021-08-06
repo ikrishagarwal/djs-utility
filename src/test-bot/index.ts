@@ -1,19 +1,23 @@
-const { Client, MessageEmbed } = require("discord.js");
+import { Client, Message, MessageEmbed } from "discord.js";
 const client = new Client();
-// const { pagination } = require("../src/index");
-const { pagination, stringPagination, confirm } = require("../dist");
 
-client.config = require("./config.js");
+import { pagination, stringPagination, confirm } from "../index";
 
-client.on("message", (message) => {
+import "./config";
+import config from "./config";
+
+// TODO: Make this more readable
+client.on("message", (message: Message) => {
   switch (message.content) {
-    case message.content === "=pg1":
+    case "=pg1":
       const embed1 = new MessageEmbed()
         .setTitle("Page 1")
         .setDescription("Some data from page no 1.");
+
       const embed2 = new MessageEmbed()
         .setTitle("Page 2")
         .setDescription("Some other data from page no 2.");
+
       const embed3 = new MessageEmbed()
         .setTitle("Page 3")
         .setDescription("Some more data from page no 3.");
@@ -24,15 +28,17 @@ client.on("message", (message) => {
         initialText: "Heyy",
         initialPage: 1,
       });
-
       break;
-    case message.content === "=pg2":
+
+    case "=pg2":
       const embed4 = new MessageEmbed()
         .setTitle("Page 1")
         .setDescription("Some data from page no 1.");
+
       const embed5 = new MessageEmbed()
         .setTitle("Page 2")
         .setDescription("Some other data from page no 2.");
+
       const embed6 = new MessageEmbed()
         .setTitle("Page 3")
         .setDescription("Some more data from page no 3.");
@@ -53,7 +59,7 @@ client.on("message", (message) => {
       });
       break;
 
-    case message.content === "=pg3":
+    case "=pg3":
       const page1 = "Some data from page no 1.";
       const page2 = "Some other data from page no 2.";
       const page3 = "Some more data from page no 3.";
@@ -74,7 +80,7 @@ client.on("message", (message) => {
           if (res) message.channel.send("Success!!");
           else message.channel.send("Denial!!");
         })
-        .catch((err) => {
+        .catch(() => {
           message.channel.send("Timeout!!");
         });
       break;
@@ -94,7 +100,7 @@ client.on("message", (message) => {
           if (res) message.channel.send("Success!!");
           else message.channel.send("Denial!!");
         })
-        .catch((err) => {
+        .catch(() => {
           message.channel.send("Timeout!!");
         });
       break;
@@ -105,7 +111,7 @@ client.on("message", (message) => {
 });
 
 client.on("ready", () => {
-  console.log("Logged in as " + client.user.tag);
+  console.log("Logged in as " + client.user?.tag);
 });
 
-client.login(client.config.token);
+client.login(config.token);
