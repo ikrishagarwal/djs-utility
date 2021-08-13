@@ -1,11 +1,13 @@
 import {
   Message,
-  MessageEmbed,
   EmojiResolvable,
   ReactionCollector,
   MessageReaction,
   TextChannel,
+  MessageEmbed,
 } from "discord.js";
+
+const ZER_WIDTH_SPACE = "\u200B";
 
 export interface emojiOptions {
   pageNumber?: EmojiResolvable;
@@ -57,7 +59,8 @@ async function handleReaction({
       case emojiList[0]:
         let res = await channel.send("Enter the page number. ");
         await channel
-          .awaitMessages((response) => response.author.id === authorID, {
+          .awaitMessages({
+            filter: (response) => response.author.id === authorID,
             max: 1,
             time: 30000,
             errors: ["time"],
@@ -65,13 +68,11 @@ async function handleReaction({
           .then((collected) => {
             let newMsg = collected.first();
             let newPage: number = parseInt(newMsg?.content || page.toString());
-            res.delete();
-            try {
-              newMsg?.delete();
-            } catch (err) {}
-            if (isNaN(newPage)) return;
-            else if (newPage < 1) return;
-            else if (newPage > pagesLength) return;
+
+            res.delete().catch(() => null);
+            newMsg?.delete().catch(() => null);
+
+            if (isNaN(newPage) || newPage < 1 || newPage > pagesLength) return;
             else page = newPage - 1;
           })
           .catch(() => null);
@@ -114,16 +115,17 @@ export async function stringPagination(data: stringPaginationEmbedOptions) {
   if (!data.pages.length) throw new Error("There must be atleast 1 page");
 
   const curPage: Message = await data.message.channel.send({
-    content: data.pages[page],
+    content: data.pages[page] as string,
   });
 
   for (const emoji of emojiList) await curPage.react(emoji);
 
-  const reactionCollector: ReactionCollector = curPage.createReactionCollector(
-    (reaction, user) =>
-      emojiList.includes(reaction.emoji.name) && user == data.message.author,
-    { time: data.timeout }
-  );
+  const reactionCollector: ReactionCollector = curPage.createReactionCollector({
+    filter: (reaction, user) =>
+      emojiList.includes(reaction.emoji.name as string) &&
+      user == data.message.author,
+    time: data.timeout,
+  });
 
   reactionCollector.on("collect", async (reaction: MessageReaction) => {
     reaction.users.remove(data.message.author);
@@ -139,13 +141,17 @@ export async function stringPagination(data: stringPaginationEmbedOptions) {
     });
 
     curPage.edit({
-      content: data.pages[page],
+      content: data.pages[page] as string,
     });
   });
 
   reactionCollector.on("end", () => {
     if (!curPage.deleted) {
-      curPage.reactions.removeAll();
+      curPage.reactions
+        .removeAll()
+        .catch((err) =>
+          console.error("An error occured while removing the reactions\n", err)
+        );
     }
   });
 }
@@ -166,19 +172,20 @@ export async function pagination(data: paginationEmbedOptions) {
   if (!data.pages.length) throw new Error("There must be atleast 1 page");
 
   const curPage: Message = await data.message.channel.send({
-    embed: data.pages[page].setFooter(
-      `Page ${page + 1} / ${data.pages.length}`
-    ),
-    content: data.initialText || "",
+    embeds: [
+      data.pages[page].setFooter(`Page ${page + 1} / ${data.pages.length}`),
+    ],
+    content: (data.initialText || ZER_WIDTH_SPACE) as string,
   });
 
   for (const emoji of emojiList) await curPage.react(emoji);
 
-  const reactionCollector: ReactionCollector = curPage.createReactionCollector(
-    (reaction, user) =>
-      emojiList.includes(reaction.emoji.name) && user == data.message.author,
-    { time: data.timeout }
-  );
+  const reactionCollector: ReactionCollector = curPage.createReactionCollector({
+    filter: (reaction, user) =>
+      emojiList.includes(reaction.emoji.name as EmojiResolvable) &&
+      user == data.message.author,
+    time: data.timeout,
+  });
 
   reactionCollector.on("collect", async (reaction: MessageReaction) => {
     reaction.users.remove(data.message.author);
@@ -194,16 +201,20 @@ export async function pagination(data: paginationEmbedOptions) {
     });
 
     curPage.edit({
-      embed: data.pages[page].setFooter(
-        `Page ${page + 1} / ${data.pages.length}`
-      ),
-      content: data.initialText || "",
+      embeds: [
+        data.pages[page].setFooter(`Page ${page + 1} / ${data.pages.length}`),
+      ],
+      content: (data.initialText || ZER_WIDTH_SPACE) as string,
     });
   });
 
   reactionCollector.on("end", () => {
     if (!curPage.deleted) {
-      curPage.reactions.removeAll();
+      curPage.reactions
+        .removeAll()
+        .catch((err) =>
+          console.error("An error occured while removing the reactions\n", err)
+        );
     }
   });
 }

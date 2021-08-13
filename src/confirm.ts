@@ -1,8 +1,8 @@
 import {
-  CollectorFilter,
   EmojiResolvable,
   Message,
   MessageEmbed,
+  MessageOptions,
 } from "discord.js";
 
 export interface confirmOptions {
@@ -16,7 +16,7 @@ export interface confirmOptions {
   timeout?: number;
 }
 
-export function confirm({
+export async function confirm({
   message,
   content,
   emojis,
@@ -24,7 +24,9 @@ export function confirm({
   timeout,
 }: confirmOptions): Promise<Boolean> {
   return new Promise(async (res, rej) => {
-    const msgRep = await message.channel.send(content);
+    const sendData: MessageOptions =
+      typeof content === "string" ? { content } : { embeds: [content] };
+    const msgRep = await message.channel.send(sendData);
 
     const check: EmojiResolvable = emojis?.check ? emojis.check : "🇾";
     const cross: EmojiResolvable = emojis?.cross ? emojis.cross : "🇳";
@@ -34,19 +36,20 @@ export function confirm({
     await msgRep.react(check);
     await msgRep.react(cross);
 
-    const filter: CollectorFilter = (reaction, user) => {
-      return [check, cross].includes(reaction.emoji.name) && user.id === u;
-    };
-
     msgRep
-      .awaitReactions(filter, {
+      .awaitReactions({
+        filter: (reaction, user) => {
+          return (
+            [check, cross].includes(reaction.emoji.name as EmojiResolvable) &&
+            user.id === u
+          );
+        },
         max: 1,
         time: timeout ? timeout : 60000,
         errors: ["time"],
       })
       .then((collected) => {
         const reaction = collected.first();
-
         msgRep.delete().catch(() => null);
 
         if (reaction?.emoji.name === check) {

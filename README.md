@@ -19,7 +19,7 @@ const utility = require("djs-utility");
 or via import
 
 ```js
-import utility from ("djs-utility");
+import * as utility from ("djs-utility");
 ```
 
 ## Using the features
@@ -78,12 +78,14 @@ pagination(options);
 >
 > ![pagination-example](./images/pagination.png)
 
+> _Note: You need some intents to enable these features as per discord.js@v13. For reference see [index.ts](./src/test-bot/index.ts)_
+
 ### `string pagination`
 
 ```js
 const { stringPagination } = require("djs-utility");
 
-strignPagination({
+stringPagination({
   message: message,
   pages: [embedOne, embedTwo, ..., lastEmbed]
 });
@@ -119,6 +121,8 @@ const { stringPagination: pagination } = require("djs-utility");
 
 pagination(...);
 ```
+
+> _Note: You need some intents to enable these features as per discord.js@v13. For reference see [index.ts](./src/test-bot/index.ts)_
 
 ### `confirm`
 
@@ -161,6 +165,8 @@ const options: confirmOptions = {
 confirm(options);
 ```
 
+> _Note: You need some intents to enable these features as per discord.js@v13. For reference see [index.ts](./src/test-bot/index.ts)_
+
 # Contributing
 
 Contributions are always welcome!
@@ -172,7 +178,7 @@ Contributions are always welcome!
 1. Make a new branch for your feature
 1. Write the code
 1. Make a new file called `config.js` in `test` folder and copy the contents of `test/sample.config.js` and update the token.
-1. Run `npm run build` and `npm run test`
+1. Run `npm run test:all` _(See more scripts in `package.json`)_
 1. Push you code and make a pull request
 1. That's it!
 

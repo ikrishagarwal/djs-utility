@@ -1,5 +1,11 @@
-import { Client, Message, MessageEmbed } from "discord.js";
-const client = new Client();
+import { Client, Message, MessageEmbed, Intents } from "discord.js";
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+  ],
+});
 
 import { pagination, stringPagination, confirm } from "../index";
 
@@ -7,7 +13,7 @@ import "./config";
 import config from "./config";
 
 // TODO: Make this more readable
-client.on("message", (message: Message) => {
+client.on("messageCreate", (message: Message) => {
   switch (message.content) {
     case "=pg1":
       const embed1 = new MessageEmbed()

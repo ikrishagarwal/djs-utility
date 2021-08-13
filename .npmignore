@@ -1,4 +1,11 @@
-# test/
+# Files
 README.md
+tsconfig.json
+LICENSE
+.vscodeignore
+
+# Folders
 images/
 dist/test-bot/
+src/
+.github/
