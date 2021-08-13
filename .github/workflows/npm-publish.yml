@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+    path-ignore:
+      - "**.md"
 
 jobs:
   npm:
@@ -23,6 +25,9 @@ jobs:
 
       - name: Installing dependencies
         run: npm ci
+
+      - name: Removing the test directory
+        run: rm -r src/test-bot/
 
       - name: Builing
         run: npm run build
