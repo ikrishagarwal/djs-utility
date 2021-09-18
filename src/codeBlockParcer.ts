@@ -1,4 +1,4 @@
-export function codeBlockParcer (str:string){
+export function codeBlockParser (str:string){
   const regex = /(\`\`\`)(\w+\s*)?\n(((?!\1).\n*)*)\1/m;
   const match = str.match(regex);
   return {
