@@ -80,6 +80,7 @@ pagination(options);
 
 > _Note: You need some intents to enable these features as per discord.js@v13. For reference see [index.ts](./src/test-bot/index.ts)_
 
+---
 ### `string pagination`
 
 ```js
@@ -124,6 +125,7 @@ pagination(...);
 
 > _Note: You need some intents to enable these features as per discord.js@v13. For reference see [index.ts](./src/test-bot/index.ts)_
 
+---
 ### `confirm`
 
 ```js
@@ -167,8 +169,31 @@ confirm(options);
 
 > _Note: You need some intents to enable these features as per discord.js@v13. For reference see [index.ts](./src/test-bot/index.ts)_
 
-# Contributing
+---
+### `codeBlockParser`
+A code Block Parser to extract language and code out of code block
 
+**Parameters:**
+- **string** - string containing codeBlock
+
+**return:**
+- `[Object]`
+  - `lang ?: string`
+  - `code ?: string`
+> Exemple :
+
+```ts
+import {codeBlockParser} from "djs-utility";
+console.log(
+  codeBlockParser("```js\n🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳 working```"));
+```
+> Output :
+
+```js
+{ lang: 'js', code: '🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳 working' }
+```
+
+---
 Contributions are always welcome!
 
 ### Steps to contribute:
