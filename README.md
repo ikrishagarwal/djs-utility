@@ -180,7 +180,7 @@ A code Block Parser to extract language and code out of code block
 - `[Object]`
   - `lang ?: string`
   - `code ?: string`
-> Exemple :
+> Example :
 
 ```ts
 import {codeBlockParser} from "djs-utility";
@@ -194,6 +194,7 @@ console.log(
 ```
 
 ---
+# Contributing
 Contributions are always welcome!
 
 ### Steps to contribute:
