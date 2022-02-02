@@ -17,20 +17,21 @@ jobs:
       - name: Clone the repository to local runner
         uses: actions/checkout@v2
 
-      - name: Install Node Version 14
+      - name: Install Node Version 16
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
+          cache: yarn
           registry-url: https://registry.npmjs.org/
 
       - name: Installing dependencies
-        run: npm ci
+        run: yarn --immutable
 
       - name: Removing the test directory
         run: rm -r src/test-bot/
 
       - name: Builing
-        run: npm run build
+        run: yarn build
 
       - name: Publishing the package to npm
         run: npm publish

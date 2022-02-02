@@ -1,4 +1,4 @@
-import {
+import type {
   EmojiResolvable,
   Message,
   MessageEmbed,
@@ -25,7 +25,7 @@ export async function confirm({
 }: confirmOptions): Promise<Boolean> {
   return new Promise(async (res, rej) => {
     const sendData: MessageOptions =
-      typeof content === "string" ? { content } : { embeds: [content] };
+      typeof content === "string" ? {content} : {embeds: [content]};
     const msgRep = await message.channel.send(sendData);
 
     const check: EmojiResolvable = emojis?.check ? emojis.check : "🇾";
@@ -62,7 +62,7 @@ export async function confirm({
         // .catch() is to handle the permission error
         msgRep.delete().catch(() => null);
 
-        rej({ error: true, errorType: err });
+        rej({error: true, errorType: err});
       });
   });
 }

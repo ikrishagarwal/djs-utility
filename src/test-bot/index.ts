@@ -1,4 +1,4 @@
-import { Client, Message, MessageEmbed, Intents } from "discord.js";
+import {Client, Message, MessageEmbed, Intents} from "discord.js";
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
@@ -8,14 +8,14 @@ const client = new Client({
 });
 
 import {inspect} from 'util';
-import { 
-  pagination, 
-  stringPagination, 
-  confirm, 
+import {
+  pagination,
+  stringPagination,
+  confirm,
   codeBlockParser
 } from "../index";
 
-import config from"./config";
+import config from "./config";
 
 // TODO: Make this more readable
 client.on("messageCreate", (message: Message) => {
@@ -115,12 +115,12 @@ client.on("messageCreate", (message: Message) => {
           message.channel.send("Timeout!!");
         });
       break;
-    
+
     case message.content.match(/^=cbParser/)?.input:
       const obj = codeBlockParser(
-        message.content.replace('=cbParser',''));
+        message.content.replace('=cbParser', ''));
       console.log(obj);
-      message.channel.send('```js\n'+inspect(obj)+'```');
+      message.channel.send('```js\n' + inspect(obj) + '```');
       break;
     default:
       break;

@@ -2,3 +2,5 @@ node_modules/
 dist/
 test/config.ts
 src/test-bot/config.ts
+
+tsconfig.tsbuildinfo

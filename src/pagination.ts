@@ -1,4 +1,4 @@
-import {
+import type {
   Message,
   EmojiResolvable,
   ReactionCollector,
@@ -101,7 +101,7 @@ async function handleReaction({
 
 export async function stringPagination(data: stringPaginationEmbedOptions) {
   let page = data.initialPage || 0;
-  let { emojis } = data;
+  let {emojis} = data;
   data.timeout = data.timeout || 120000;
   let emojiList: EmojiResolvable[] = [
     emojis?.pageNumber || "🔢",
@@ -158,7 +158,7 @@ export async function stringPagination(data: stringPaginationEmbedOptions) {
 
 export async function pagination(data: paginationEmbedOptions) {
   let page = data.initialPage || 0;
-  let { emojis } = data;
+  let {emojis} = data;
   data.timeout = data.timeout || 120000;
   let emojiList: EmojiResolvable[] = [
     emojis?.pageNumber || "🔢",
