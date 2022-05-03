@@ -1,5 +1,5 @@
 export function codeBlockParser (str:string):CBParserType{
-  const reg =  /```(\S*)?(?:\s+)?\n([^```]+)```/g;
+  const reg =  /```(\S*)?(?:\s+)?\n((?:(?!```)[^])+)```/g;
   return [...str.matchAll(reg)]
     .map(e=>({lang:e[1],code:e[2]}));
 }
