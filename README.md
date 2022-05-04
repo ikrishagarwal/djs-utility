@@ -171,13 +171,13 @@ confirm(options);
 
 ---
 ### `codeBlockParser`
-A code Block Parser to extract language and code out of code block
+A code Block Parser to extract language and code out of code blocks.
 
 **Parameters:**
 - **string** - string containing codeBlock
 
 **return:**
-- `[Object]`
+- `Array<[Object]>`
   - `lang ?: string`
   - `code ?: string`
 > Example :
@@ -190,7 +190,7 @@ console.log(
 > Output :
 
 ```js
-{ lang: 'js', code: '🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳 working' }
+[{ lang: 'js', code: '🥳🥳🥳🥳🥳🥳🥳🥳🥳🥳 working' }]
 ```
 
 ---
